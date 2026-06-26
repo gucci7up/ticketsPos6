@@ -111,8 +111,8 @@ export default function App() {
 
       {/* ── Brand ── */}
       <div className="brand">
-        <div className="brand-name">Racing Dogs</div>
-        <div className="brand-sub">mbsport.lat · Verificación de tickets</div>
+        <img src="/logo.png" alt="MBSport Racing Dogs" className="brand-logo" />
+        <div className="brand-sub">Verificación de tickets · mbsport.lat</div>
       </div>
 
       {/* ── Loading ── */}
