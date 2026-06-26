@@ -148,6 +148,7 @@ body {
 .bet-sel    { font-weight: 700; font-size: 15px; flex: 1; min-width: 0; }
 .bet-amount { color: #666; white-space: nowrap; font-size: 13px; }
 .bet-odds   { color: #D4AF37; font-size: 12px; white-space: nowrap; }
+.bet-premio { color: #4CAF50; font-weight: 700; font-size: 13px; white-space: nowrap; }
 
 /* ── Spinner ── */
 .spinner-wrap { text-align: center; padding: 72px 0; }

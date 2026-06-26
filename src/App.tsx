@@ -105,9 +105,6 @@ export default function App() {
 
   const si = ticket ? STATUS_INFO[ticket.status] : null;
   const prize = ticket?.prizeAmount ? parseFloat(ticket.prizeAmount) : 0;
-  const potential = ticket
-    ? ticket.details.reduce((s, d) => s + parseFloat(d.potentialPrize), 0)
-    : 0;
 
   return (
     <div className="page">
@@ -188,14 +185,18 @@ export default function App() {
           {/* Bets */}
           <div className="card">
             <div className="card-title">Jugadas ({ticket.details.length})</div>
-            {ticket.details.map((d, i) => (
-              <div key={i} className="bet">
-                <span className={`bet-type ${d.betType}`}>{BET_LABEL[d.betType]}</span>
-                <span className="bet-sel">{formatSelection(d.selection, d.betType)}</span>
-                <span className="bet-amount">{money(d.amount)}</span>
-                <span className="bet-odds">×{parseFloat(d.odds).toFixed(2)}</span>
-              </div>
-            ))}
+            {ticket.details.map((d, i) => {
+              const premio = parseFloat(d.amount) * parseFloat(d.odds);
+              return (
+                <div key={i} className="bet">
+                  <span className={`bet-type ${d.betType}`}>{BET_LABEL[d.betType]}</span>
+                  <span className="bet-sel">{formatSelection(d.selection, d.betType)}</span>
+                  <span className="bet-amount">{money(d.amount)}</span>
+                  <span className="bet-odds">×{parseFloat(d.odds).toFixed(2)}</span>
+                  <span className="bet-premio">{money(premio)}</span>
+                </div>
+              );
+            })}
           </div>
 
           {/* Summary */}
@@ -204,10 +205,6 @@ export default function App() {
             <div className="row">
               <span className="row-label">Total apostado</span>
               <span className="row-value">{money(ticket.totalAmount)}</span>
-            </div>
-            <div className="row">
-              <span className="row-label">Premio potencial</span>
-              <span className="row-value gold">{money(potential.toFixed(2))}</span>
             </div>
             {prize > 0 && (
               <div className="row">
